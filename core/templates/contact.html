@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <!--======= SUB BANNER =========-->
+  <section class="sub-bnr" data-stellar-background-ratio="0.5">
+    <div class="position-center-center">
+      <div class="container">
+        <h4>contact us now</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. 
+          Sed feugiat, tellus vel tristique posuere, diam</p>
+        <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li class="active">contact</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Content -->
+  <div id="content"> 
+    
+    <!--======= CONATACT  =========-->
+    <section class="contact padding-top-100 padding-bottom-100">
+      <div class="container">
+        <div class="contact-form">
+          <h5>PLEASE fill-up FEW details</h5>
+          <div class="row">
+            <div class="col-md-8"> 
+              
+              <!--======= Success Msg =========-->
+              <!-- <div id="contact_message" class="success-msg"> <i class="fa fa-paper-plane-o"></i>Thank You. Your Message has been Submitted</div> -->
+              
+              <!--======= FORM  =========-->
+              <form role="form" id="contact_form" class="contact-form" method="POST" onSubmit="" name="contactform">
+                
+                 
+                <ul class="row">
+                  {% csrf_token %}
+                  {{ form.non_field_errors }}
+                  {% for field in form %}
+                  <li class="col-sm-6">
+                    <label>{{ field.label_tag }}
+                      {{ field }}
+                      {% if field.errors %}
+                      <ul>
+                        {% for error in field.errors %}
+                        <li class="alert-danger">{{ error }}</li>
+                        {% endfor %}
+                      </ul>
+                  
+                      {% endif %}
+                    </label>
+                  </li>
+                  
+                  {% endfor %}
+                  
+                  <li class="col-sm-12">
+                    <button name="contactform" type="submit" value="submit" class="btn" id="btn_submit" onClick="proceed();">SEND MAIL</button>
+                  </li>
+                </ul>
+              </form>
+            </div>
+            
+            <!--======= ADDRESS INFO  =========-->
+            <div class="col-md-4">
+              <div class="contact-info">
+                <h6>OUR ADDRESS</h6>
+                <ul>
+                  <li> <i class="icon-map-pin"></i> Street No. 12, Newyork 12,<br>
+                    MD - 123, USA.</li>
+                  <li> <i class="icon-call-end"></i> 1.800.123.456789</li>
+                  <li> <i class="icon-envelope"></i> <a href="mailto:someone@example.com" target="_top">info@PAVSHOP.com</a> </li>
+                  <li>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam erat turpis, pellentesque non leo eget.</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!--======= MAP =========-->
+    <div id="map"></div>
+    {% include 'partials/about.html' %}
+    {% include 'partials/newsletter.html'  %}
+    
+  </div>
+  
+  
+  
+
+  
+{% endblock %}
